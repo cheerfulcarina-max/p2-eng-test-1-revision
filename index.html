@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P2 English Revision Quest: Ch1 & Ch2</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas-Confetti for celebratory effects -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Google Fonts: Comic Neue & Fredoka for playful kids feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fredoka', 'Quicksand', cursive, sans-serif;
+    }
+    .perspective {
+      perspective: 1000px;
+    }
+    .transform-style-3d {
+      transform-style: preserve-3d;
+    }
+    .backface-hidden {
+      backface-visibility: hidden;
+    }
+    .rotate-y-180 {
+      transform: rotateY(180deg);
+    }
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-bounce-slow {
+      animation: bounce-slow 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-amber-100 via-sky-100 to-emerald-100 min-h-screen text-slate-800 flex flex-col items-center p-3 sm:p-6 select-none">
+
+  <!-- Header / Navigation Bar -->
+  <header class="w-full max-w-4xl bg-white/90 backdrop-blur-md shadow-lg rounded-3xl p-4 sm:p-5 mb-5 border-4 border-amber-300 flex flex-wrap items-center justify-between gap-3">
+    <div class="flex items-center space-x-3">
+      <div class="text-3xl sm:text-4xl animate-bounce-slow">🌳🍎</div>
+      <div>
+        <h1 class="text-xl sm:text-2xl font-bold text-amber-700 tracking-wide">P.2 English Revision Quest</h1>
+        <p class="text-xs sm:text-sm text-slate-500 font-semibold">Ch 1: Rules in the park &bull; Ch 2: Yummy fruit</p>
+      </div>
+    </div>
+    
+    <!-- Score & Star Counter -->
+    <div class="flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-2xl border-2 border-amber-300">
+      <span class="text-2xl">⭐</span>
+      <span class="text-base sm:text-lg font-bold text-amber-800">Score: <span id="current-score" class="text-amber-600 text-xl">0</span></span>
+    </div>
+  </header>
+
+  <!-- Tab Navigation Buttons -->
+  <nav class="flex flex-wrap justify-center gap-2 sm:gap-4 max-w-4xl w-full mb-6">
+    <button onclick="switchTab('home')" id="tab-home" class="tab-btn px-4 py-2 sm:px-6 sm:py-3 rounded-2xl font-bold text-sm sm:text-base transition-all shadow-md bg-amber-500 text-white border-b-4 border-amber-700 hover:scale-105 active:scale-95">
+      🏠 Mission Home
+    </button>
+    <button onclick="switchTab('vocab1')" id="tab-vocab1" class="tab-btn px-4 py-2 sm:px-6 sm:py-3 rounded-2xl font-bold text-sm sm:text-base transition-all shadow-md bg-white text-slate-700 border-b-4 border-slate-300 hover:scale-105 active:scale-95">
+      🌳 Ch1 Park Flashcards
+    </button>
+    <button onclick="switchTab('vocab2')" id="tab-vocab2" class="tab-btn px-4 py-2 sm:px-6 sm:py-3 rounded-2xl font-bold text-sm sm:text-base transition-all shadow-md bg-white text-slate-700 border-b-4 border-slate-300 hover:scale-105 active:scale-95">
+      🍉 Ch2 Fruit Flashcards
+    </button>
+    <button onclick="switchTab('quiz')" id="tab-quiz" class="tab-btn px-4 py-2 sm:px-6 sm:py-3 rounded-2xl font-bold text-sm sm:text-base transition-all shadow-md bg-white text-slate-700 border-b-4 border-slate-300 hover:scale-105 active:scale-95">
+      🚀 Grammar Quiz
+    </button>
+  </nav>
+
+  <!-- Main Content Box -->
+  <main class="w-full max-w-4xl flex-1 flex flex-col justify-center">
+
+    <!-- TAB 1: HOME PAGE -->
+    <section id="section-home" class="tab-content bg-white/95 rounded-3xl p-6 sm:p-10 shadow-xl border-4 border-emerald-300 text-center relative overflow-hidden">
+      <div class="text-6xl sm:text-7xl mb-4 animate-bounce-slow">🎈🎒</div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-emerald-800 mb-3">Welcome, Super English Learner!</h2>
+      <p class="text-slate-600 text-base sm:text-lg max-w-xl mx-auto mb-6">
+        Ready for the English Test? Explore the park rules, review yummy fruits, and challenge yourself with 5 fun interactive questions to score 3 Stars! ⭐
+      </p>
+
+      <!-- Learning Objectives Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8 text-left">
+        <div class="p-4 bg-emerald-50 rounded-2xl border-2 border-emerald-200 flex items-start gap-3">
+          <span class="text-3xl">🌳</span>
+          <div>
+            <h3 class="font-bold text-emerald-800">Chapter 1: Rules in the park</h3>
+            <p class="text-xs text-slate-600 mt-1">Actions: <i>climb the trees, pick the flowers, litter</i>. Rules: <i>Don't walk on the grass. Walk on the path. Can I...?</i></p>
+          </div>
+        </div>
+        <div class="p-4 bg-amber-50 rounded-2xl border-2 border-amber-200 flex items-start gap-3">
+          <span class="text-3xl">🍓</span>
+          <div>
+            <h3 class="font-bold text-amber-800">Chapter 2: Yummy fruit</h3>
+            <p class="text-xs text-slate-600 mt-1">Plurals: <i>peaches, cherries, grapes</i>. Expressions: <i>I like apples. Do you want some bananas? Yes, please.</i></p>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="switchTab('vocab1')" class="px-8 py-4 bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-extrabold text-xl rounded-2xl shadow-lg border-b-4 border-emerald-700 transition duration-150 inline-flex items-center gap-2">
+        <span>Start Revision Mission! ➔</span>
+      </button>
+    </section>
+
+    <!-- TAB 2: CH1 PARK FLASHCARDS -->
+    <section id="section-vocab1" class="tab-content hidden">
+      <div class="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-sky-300">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-sky-800">🌳 Chapter 1: Park Signs & Rules</h2>
+            <p class="text-xs sm:text-sm text-slate-500">Tap cards to flip & see details. Tap 🔊 to listen!</p>
+          </div>
+          <span class="bg-sky-100 text-sky-800 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full border border-sky-300">6 Cards</span>
+        </div>
+
+        <!-- Flashcards Grid -->
+        <div id="ch1-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamically inserted by JS -->
+        </div>
+
+        <div class="mt-8 text-center">
+          <button onclick="switchTab('vocab2')" class="px-6 py-3 bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-bold text-lg rounded-2xl shadow-md border-b-4 border-sky-700 transition">
+            Next: Chapter 2 Fruit Land 🍎 ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: CH2 FRUIT FLASHCARDS -->
+    <section id="section-vocab2" class="tab-content hidden">
+      <div class="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-rose-300">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-rose-800">🍎 Chapter 2: Yummy Fruit & Plural Nouns</h2>
+            <p class="text-xs sm:text-sm text-slate-500">Remember: singular (1) vs plural (+s, +es, y ➔ ies)!</p>
+          </div>
+          <span class="bg-rose-100 text-rose-800 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full border border-rose-300">Grammar Tip Included</span>
+        </div>
+
+        <!-- Grammar Rule Reminder Box -->
+        <div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-4 mb-6 text-sm text-rose-900 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="p-2 bg-white rounded-xl shadow-sm">
+            <span class="font-bold text-rose-600">Rule 1: Add -s</span>
+            <p class="text-xs text-slate-600 mt-1">a banana ➔ <b>bananas</b><br>an apple ➔ <b>apples</b></p>
+          </div>
+          <div class="p-2 bg-white rounded-xl shadow-sm">
+            <span class="font-bold text-rose-600">Rule 2: Add -es (-ch/-sh)</span>
+            <p class="text-xs text-slate-600 mt-1">a peach ➔ <b>peaches</b><br>a bench ➔ <b>benches</b></p>
+          </div>
+          <div class="p-2 bg-white rounded-xl shadow-sm">
+            <span class="font-bold text-rose-600">Rule 3: y ➔ -ies</span>
+            <p class="text-xs text-slate-600 mt-1">a cherry ➔ <b>cherries</b><br>a strawberry ➔ <b>strawberries</b></p>
+          </div>
+        </div>
+
+        <!-- Flashcards Grid -->
+        <div id="ch2-cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Dynamically inserted by JS -->
+        </div>
+
+        <div class="mt-8 text-center">
+          <button onclick="switchTab('quiz')" class="px-6 py-3 bg-rose-500 hover:bg-rose-600 active:scale-95 text-white font-bold text-lg rounded-2xl shadow-md border-b-4 border-rose-700 transition">
+            Start Interactive Quiz! 🚀 ➔
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: INTERACTIVE QUIZ -->
+    <section id="section-quiz" class="tab-content hidden">
+      <div id="quiz-card" class="bg-white/95 rounded-3xl p-6 sm:p-10 shadow-xl border-4 border-purple-300">
+        <!-- Progress Bar -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center text-xs sm:text-sm font-bold text-purple-800 mb-2">
+            <span id="question-progress">Question 1 of 5</span>
+            <span id="question-tag" class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full border border-purple-300">Chapter 1</span>
+          </div>
+          <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden">
+            <div id="quiz-progress-bar" class="bg-purple-500 h-full rounded-full transition-all duration-300" style="width: 20%;"></div>
+          </div>
+        </div>
+
+        <!-- Question Body -->
+        <div class="my-6">
+          <div class="flex items-center gap-3 mb-3">
+            <span id="q-icon" class="text-4xl">🌳</span>
+            <h3 id="q-text" class="text-lg sm:text-2xl font-bold text-slate-800">Look at the sign. What should the park keeper say?</h3>
+          </div>
+          <p id="q-sentence" class="text-base sm:text-xl font-semibold bg-purple-50 p-4 rounded-2xl border-2 border-purple-200 text-purple-900 mb-6">
+            "__________ walk on the grass! Walk on the path."
+          </p>
+        </div>
+
+        <!-- Options Container -->
+        <div id="options-container" class="grid grid-cols-1 gap-3 sm:gap-4 mb-6">
+          <!-- Dynamically inserted by JS -->
+        </div>
+
+        <!-- Explanation & Feedback Box -->
+        <div id="feedback-box" class="hidden p-4 rounded-2xl mb-4 border-2 font-medium text-sm sm:text-base">
+          <div id="feedback-text" class="font-bold mb-1"></div>
+          <div id="feedback-hint" class="text-xs sm:text-sm"></div>
+        </div>
+
+        <!-- Next Question Button -->
+        <div class="text-right">
+          <button id="next-btn" onclick="nextQuestion()" class="hidden px-6 py-3 bg-purple-600 hover:bg-purple-700 active:scale-95 text-white font-bold text-base sm:text-lg rounded-2xl shadow-md border-b-4 border-purple-800 transition">
+            Next Question ➔
+          </button>
+        </div>
+      </div>
+
+      <!-- RESULTS MODAL / SUMMARY -->
+      <div id="quiz-summary" class="hidden bg-white/95 rounded-3xl p-6 sm:p-10 shadow-2xl border-4 border-amber-300 text-center">
+        <div class="text-7xl mb-4 animate-bounce-slow">🏆</div>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-amber-800 mb-2">Fantastic Job!</h2>
+        <p class="text-slate-600 text-base sm:text-lg mb-4">You have completed the Chapter 1 & 2 Revision Mission!</p>
+        
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 max-w-sm mx-auto mb-6">
+          <div class="text-sm font-bold text-amber-700 uppercase">Your Final Score</div>
+          <div id="final-score-display" class="text-4xl sm:text-5xl font-extrabold text-amber-600 my-2">5 / 5</div>
+          <div id="final-stars" class="text-3xl">⭐⭐⭐</div>
+          <div id="final-comment" class="text-sm font-medium text-slate-600 mt-2">You are ready for the English Test!</div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          <button onclick="restartQuiz()" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 active:scale-95 text-white font-bold text-base rounded-2xl shadow-md border-b-4 border-amber-700 transition">
+            🔄 Retry Quiz (重試挑戰)
+          </button>
+          <button onclick="switchTab('vocab1')" class="px-6 py-3 bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-bold text-base rounded-2xl shadow-md border-b-4 border-sky-700 transition">
+            📖 Read Flashcards Again
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-8 text-center text-xs sm:text-sm text-slate-500 font-medium">
+    Longman English World 2A &bull; Chapters 1 & 2 Practice &bull; Designed for Primary 2 Students
+  </footer>
+
+  <script>
+    // --- Data Definitions ---
+    const ch1Vocab = [
+      { en: "climb the trees", zh: "爬樹", icon: "🌳", ex: "Don't climb the trees!" },
+      { en: "pick the flowers", zh: "採摘花朵", icon: "🌸", ex: "Can I pick the flowers? No, you can't." },
+      { en: "feed the ducks", zh: "餵飼鴨兒", icon: "🦆", ex: "Don't feed the ducks." },
+      { en: "walk on the grass", zh: "在草地上走", icon: "🌱", ex: "Don't walk on the grass." },
+      { en: "walk on the path", zh: "走在小徑上", icon: "🚶", ex: "Walk on the path, please." },
+      { en: "litter", zh: "亂拋垃圾", icon: "🗑️️", ex: "Don't litter in the park." },
+      { en: "line up", zh: "排隊", icon: "🧍‍♂️🧍‍♀️", ex: "Line up at the snack bars." },
+      { en: "push", zh: "推擠", icon: "✋", ex: "Don't push! Wait for your turn." }
+    ];
+
+    const ch2Vocab = [
+      { en: "an apple ➔ apples", zh: "蘋果 (加 -s)", icon: "🍎", ex: "I like apples." },
+      { en: "a peach ➔ peaches", zh: "桃子 (加 -es)", icon: "🍑", ex: "Do you want some peaches?" },
+      { en: "a banana ➔ bananas", zh: "香蕉 (加 -s)", icon: "🍌", ex: "I don't like bananas." },
+      { en: "a cherry ➔ cherries", zh: "櫻桃 (y 變 -ies)", icon: "🍒", ex: "Can I have some cherries?" },
+      { en: "a grape ➔ grapes", zh: "葡萄 (加 -s)", icon: "🍇", ex: "There are some sweet grapes." },
+      { en: "a pear ➔ pears", zh: "梨子 (加 -s)", icon: "🍐", ex: "Do you want a pear? Yes, please." }
+    ];
+
+    const quizQuestions = [
+      {
+        tag: "Chapter 1: Imperatives",
+        icon: "🌳",
+        question: "Look at the park sign with a red cross. What should the teacher say?",
+        sentence: "“________ climb the trees! It is dangerous!”",
+        options: [
+          { text: "Don't", isCorrect: true },
+          { text: "Doesn't", isCorrect: false },
+          { text: "Can", isCorrect: false }
+        ],
+        hint: "We use 'Don't' + base verb to tell people not to do bad actions!"
+      },
+      {
+        tag: "Chapter 1: Asking Permission",
+        icon: "🌸",
+        question: "Tim is asking the park keeper for permission:",
+        sentence: "Tim: “Can I ________ the flowers?”\nPark Keeper: “No, you can't.”",
+        options: [
+          { text: "picks", isCorrect: false },
+          { text: "pick", isCorrect: true },
+          { text: "picking", isCorrect: false }
+        ],
+        hint: "After the modal verb 'Can', always use the original action word (base form 'pick')!"
+      },
+      {
+        tag: "Chapter 2: Plural Nouns",
+        icon: "🍑",
+        question: "Mum is offering fruit at the snack table:",
+        sentence: "Mum: “Do you want ________ peaches?”\nJenny: “Yes, please. I like peaches.”",
+        options: [
+          { text: "a", isCorrect: false },
+          { text: "some", isCorrect: true },
+          { text: "an", isCorrect: false }
+        ],
+        hint: "Peaches is plural (more than one peach), so we use 'some'!"
+      },
+      {
+        tag: "Chapter 1: Instructions",
+        icon: "🚶‍♂️",
+        question: "The park keeper tells Alan how to walk safely:",
+        sentence: "“Don't walk on the grass. ________ on the path.”",
+        options: [
+          { text: "Walks", isCorrect: false },
+          { text: "Walk", isCorrect: true },
+          { text: "Walking", isCorrect: false }
+        ],
+        hint: "Imperatives start with the base form of the verb to give good instructions: 'Walk on the path'!"
+      },
+      {
+        tag: "Chapter 2: Polite Replies",
+        icon: "🍇",
+        question: "Peter offers you grapes, but you do NOT want them:",
+        sentence: "Peter: “Do you want some grapes?”\nYou: “________, thank you. I don't like grapes.”",
+        options: [
+          { text: "Yes", isCorrect: false },
+          { text: "No", isCorrect: true },
+          { text: "Please", isCorrect: false }
+        ],
+        hint: "When we decline an offer politely, we say: 'No, thank you.'"
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    // Speech Synthesis for English pronunciation
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop ongoing speech
+        const cleanText = text.replace(/➔.*/, '').replace(/[^\w\s']/gi, '');
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85; // Slightly slower for P2 pupils
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // Render Cards
+    function renderFlashcards() {
+      // Ch1 Grid
+      const ch1Container = document.getElementById('ch1-cards-grid');
+      ch1Container.innerHTML = ch1Vocab.map(item => `
+        <div class="bg-sky-50 border-2 border-sky-200 hover:border-sky-400 p-4 rounded-2xl shadow-sm hover:shadow-md transition duration-200 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-3xl">${item.icon}</span>
+            <button onclick="speakText('${item.en}')" title="Listen" class="p-2 bg-sky-200 hover:bg-sky-300 rounded-full text-sky-800 transition">
+              🔊
+            </button>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-base sm:text-lg text-sky-900">${item.en}</h4>
+            <p class="text-xs text-slate-500 font-semibold mb-2">${item.zh}</p>
+            <p class="text-xs bg-white p-2 rounded-xl border border-sky-100 text-sky-700 italic">“${item.ex}”</p>
+          </div>
+        </div>
+      `).join('');
+
+      // Ch2 Grid
+      const ch2Container = document.getElementById('ch2-cards-grid');
+      ch2Container.innerHTML = ch2Vocab.map(item => `
+        <div class="bg-rose-50 border-2 border-rose-200 hover:border-rose-400 p-4 rounded-2xl shadow-sm hover:shadow-md transition duration-200 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-3xl">${item.icon}</span>
+            <button onclick="speakText('${item.en}')" title="Listen" class="p-2 bg-rose-200 hover:bg-rose-300 rounded-full text-rose-800 transition">
+              🔊
+            </button>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-base sm:text-lg text-rose-900">${item.en}</h4>
+            <p class="text-xs text-slate-500 font-semibold mb-2">${item.zh}</p>
+            <p class="text-xs bg-white p-2 rounded-xl border border-rose-100 text-rose-700 italic">“${item.ex}”</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Tab Switcher
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-amber-500', 'bg-sky-500', 'bg-rose-500', 'bg-purple-500', 'text-white');
+        btn.classList.add('bg-white', 'text-slate-700');
+      });
+
+      const activeSection = document.getElementById(`section-${tabId}`);
+      if (activeSection) activeSection.classList.remove('hidden');
+
+      const activeBtn = document.getElementById(`tab-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white', 'text-slate-700');
+        if (tabId === 'home') activeBtn.classList.add('bg-amber-500', 'text-white');
+        else if (tabId === 'vocab1') activeBtn.classList.add('bg-sky-500', 'text-white');
+        else if (tabId === 'vocab2') activeBtn.classList.add('bg-rose-500', 'text-white');
+        else if (tabId === 'quiz') activeBtn.classList.add('bg-purple-500', 'text-white');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function loadQuestion() {
+      answered = false;
+      const q = quizQuestions[currentQuestionIndex];
+      document.getElementById('question-progress').textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+      document.getElementById('question-tag').textContent = q.tag;
+      document.getElementById('q-icon').textContent = q.icon;
+      document.getElementById('q-text').textContent = q.question;
+      document.getElementById('q-sentence').innerHTML = q.sentence.replace(/\n/g, '<br>');
+      
+      const progressPercent = ((currentQuestionIndex + 1) / quizQuestions.length) * 100;
+      document.getElementById('quiz-progress-bar').style.width = `${progressPercent}%`;
+
+      const optionsBox = document.getElementById('options-container');
+      optionsBox.innerHTML = '';
+
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "w-full text-left p-4 rounded-2xl border-2 border-slate-200 bg-slate-50 hover:bg-purple-50 hover:border-purple-300 font-bold text-slate-700 transition flex items-center justify-between active:scale-[0.99]";
+        btn.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-white border border-slate-300 flex items-center justify-center font-extrabold text-sm text-purple-700 shadow-sm">${String.fromCharCode(65 + idx)}</span>
+            <span class="text-base sm:text-lg">${opt.text}</span>
+          </div>
+          <span class="status-icon text-xl"></span>
+        `;
+        btn.onclick = () => selectOption(btn, opt.isCorrect, q.hint);
+        optionsBox.appendChild(btn);
+      });
+
+      // Reset feedback and next button
+      const feedbackBox = document.getElementById('feedback-box');
+      feedbackBox.classList.add('hidden');
+      document.getElementById('next-btn').classList.add('hidden');
+    }
+
+    function selectOption(buttonEl, isCorrect, hint) {
+      if (answered) return;
+      answered = true;
+
+      const buttons = document.querySelectorAll('#options-container button');
+      buttons.forEach(btn => btn.disabled = true);
+
+      const feedbackBox = document.getElementById('feedback-box');
+      const feedbackText = document.getElementById('feedback-text');
+      const feedbackHint = document.getElementById('feedback-hint');
+      feedbackBox.classList.remove('hidden');
+
+      if (isCorrect) {
+        score++;
+        document.getElementById('current-score').textContent = score;
+        buttonEl.classList.remove('bg-slate-50', 'border-slate-200');
+        buttonEl.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900');
+        buttonEl.querySelector('.status-icon').textContent = '✅';
+
+        feedbackBox.className = "p-4 rounded-2xl mb-4 border-2 font-medium text-sm sm:text-base bg-emerald-50 border-emerald-300 text-emerald-900";
+        feedbackText.textContent = "🌟 Fantastic! Correct Answer!";
+        feedbackHint.textContent = hint;
+
+        // Confetti for correct answer
+        confetti({
+          particleCount: 40,
+          spread: 50,
+          origin: { y: 0.7 }
+        });
+      } else {
+        buttonEl.classList.remove('bg-slate-50', 'border-slate-200');
+        buttonEl.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-900');
+        buttonEl.querySelector('.status-icon').textContent = '❌';
+
+        feedbackBox.className = "p-4 rounded-2xl mb-4 border-2 font-medium text-sm sm:text-base bg-rose-50 border-rose-300 text-rose-900";
+        feedbackText.textContent = "💡 Good try! Check the rule below:";
+        feedbackHint.textContent = hint;
+      }
+
+      document.getElementById('next-btn').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIndex < quizQuestions.length - 1) {
+        currentQuestionIndex++;
+        loadQuestion();
+      } else {
+        showSummary();
+      }
+    }
+
+    function showSummary() {
+      document.getElementById('quiz-card').classList.add('hidden');
+      const summaryBox = document.getElementById('quiz-summary');
+      summaryBox.classList.remove('hidden');
+
+      document.getElementById('final-score-display').textContent = `${score} / ${quizQuestions.length}`;
+
+      const stars = score === 5 ? "⭐⭐⭐" : score >= 3 ? "⭐⭐" : "⭐";
+      document.getElementById('final-stars').textContent = stars;
+
+      let comment = "You did great! Keep practicing!";
+      if (score === 5) comment = "🏆 Perfect Score! You are a Park & Fruit English Master!";
+      else if (score >= 3) comment = "👏 Well done! You are almost ready for full marks!";
+      document.getElementById('final-comment').textContent = comment;
+
+      // Big confetti burst
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+
+    function restartQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      document.getElementById('current-score').textContent = score;
+      document.getElementById('quiz-summary').classList.add('hidden');
+      document.getElementById('quiz-card').classList.remove('hidden');
+      loadQuestion();
+    }
+
+    // Initialize on window load
+    window.onload = function() {
+      renderFlashcards();
+      loadQuestion();
+    };
+  </script>
+</body>
+</html>
